@@ -1,155 +1,611 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sw">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elizabeth Biashara — Heater Jugs</title>
+<meta name="description" content="Nunua Heater Jugs bora Tanzania. Bei nafuu, uwasilishaji wa haraka, agiza kupitia WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal-900:#0B3638;
+    --teal-700:#135254;
+    --teal-500:#1C7274;
+    --teal-100:#EFF5F4;
+    --amber-500:#E8873A;
+    --amber-600:#CC6F27;
+    --ink:#16211F;
+    --ink-soft:#4A5654;
+    --paper:#FBFAF7;
+    --line:#DCE4E2;
+    --whatsapp:#25D366;
+    --whatsapp-dark:#1DA851;
+    --radius-sm:6px;
+    --radius-md:10px;
+    --shadow:0 8px 24px rgba(11,54,56,0.10);
+    --maxw:1180px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Work Sans', system-ui, sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.5;
+  }
+  h1,h2,h3,.brand,.price{
+    font-family:'Space Grotesk', system-ui, sans-serif;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  button{font-family:inherit;cursor:pointer;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px;}
+
+  :focus-visible{outline:3px solid var(--amber-500);outline-offset:2px;}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;top:0;z-index:40;
+    background:var(--teal-900);
+    color:#fff;
+    border-bottom:3px solid var(--amber-500);
+  }
+  header .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    height:64px;
+  }
+  .brand{
+    font-size:1.15rem;font-weight:700;letter-spacing:0.01em;
+    color:#fff;text-decoration:none;
+    display:flex;flex-direction:column;line-height:1.15;
+  }
+  .brand small{
+    font-family:'Work Sans',sans-serif;font-weight:400;font-size:0.68rem;
+    color:#BFEAE9;
+  }
+  .cart-btn{
+    background:var(--teal-500);
+    color:#fff;border:none;border-radius:var(--radius-sm);
+    padding:10px 14px;
+    display:flex;align-items:center;gap:8px;
+    font-weight:600;font-size:0.92rem;
+  }
+  .cart-btn:hover{background:var(--amber-500);}
+  .cart-count{
+    background:var(--amber-500);
+    min-width:20px;height:20px;border-radius:999px;
+    font-size:0.72rem;display:flex;align-items:center;justify-content:center;
+    padding:0 5px;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:linear-gradient(160deg,var(--teal-700) 0%,var(--teal-900) 100%);
+    color:#fff;
+    padding:56px 0 72px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid;
+    gap:36px;
+    align-items:center;
+    grid-template-columns:1fr;
+  }
+  .hero h1{
+    font-size:clamp(1.9rem,5vw,2.9rem);
+    line-height:1.12;
+    margin:0 0 14px;
+    max-width:14ch;
+  }
+  .hero p{
+    font-size:1.05rem;
+    color:#D9EDEC;
+    max-width:46ch;
+    margin:0 0 26px;
+  }
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:13px 22px;border-radius:var(--radius-sm);
+    font-weight:600;font-size:0.95rem;border:none;
+    text-decoration:none;
+  }
+  .btn-primary{background:var(--amber-500);color:#221004;}
+  .btn-primary:hover{background:var(--amber-600);}
+  .btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,0.55);}
+  .btn-outline:hover{border-color:#fff;}
+
+  .hero-visual{
+    justify-self:center;
+    width:100%;
+    max-width:280px;
+  }
+  .hero-stats{
+    display:flex;gap:26px;margin-top:34px;flex-wrap:wrap;
+  }
+  .hero-stat b{display:block;font-size:1.4rem;font-family:'Space Grotesk',sans-serif;}
+  .hero-stat span{font-size:0.82rem;color:#B9DCDA;}
+
+  /* ---------- Section heading ---------- */
+  .section{padding:56px 0;}
+  .section-head{margin-bottom:30px;max-width:60ch;}
+  .section-head h2{font-size:clamp(1.4rem,3vw,1.9rem);margin:0 0 10px;color:var(--teal-900);}
+  .section-head p{margin:0;color:var(--ink-soft);}
+
+  /* ---------- Products ---------- */
+  .products{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+  }
+  .card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--radius-md);
+    overflow:hidden;
+    display:flex;flex-direction:column;
+  }
+  .card-media{
+    aspect-ratio:1/1;
+    background:var(--teal-100);
+    position:relative;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .card-media img{width:100%;height:100%;object-fit:cover;}
+  .card-media img.is-hidden{display:none;}
+  .card-media svg{width:52%;height:52%;color:var(--teal-500);}
+  .card-body{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .card-body h3{font-size:0.95rem;margin:0;font-weight:600;line-height:1.3;}
+  .card-meta{font-size:0.78rem;color:var(--ink-soft);}
+  .card-foot{
+    margin-top:auto;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:8px;
+  }
+  .price{font-weight:700;color:var(--teal-900);font-size:1.02rem;}
+  .add-btn{
+    background:var(--teal-700);color:#fff;border:none;
+    border-radius:var(--radius-sm);
+    width:38px;height:38px;
+    font-size:1.2rem;line-height:1;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .add-btn:hover{background:var(--amber-500);color:#221004;}
+  .add-btn[data-added="true"]{background:var(--whatsapp);}
+
+  /* ---------- Trust / how it works ---------- */
+  .steps{
+    display:grid;gap:20px;
+    grid-template-columns:1fr;
+  }
+  .step{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius-md);
+    padding:20px;
+  }
+  .step-num{
+    width:30px;height:30px;border-radius:999px;
+    background:var(--teal-100);color:var(--teal-700);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-family:'Space Grotesk',sans-serif;
+    margin-bottom:12px;
+  }
+  .step h3{margin:0 0 6px;font-size:1rem;}
+  .step p{margin:0;color:var(--ink-soft);font-size:0.9rem;}
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--teal-900);color:#D9EDEC;
+    padding:44px 0 28px;
+    margin-top:20px;
+  }
+  footer .wrap{
+    display:grid;gap:28px;
+    grid-template-columns:1fr;
+  }
+  footer h4{color:#fff;margin:0 0 12px;font-size:1rem;}
+  footer p, footer a{color:#B9DCDA;font-size:0.92rem;text-decoration:none;}
+  footer a:hover{color:#fff;}
+  .foot-bottom{
+    border-top:1px solid rgba(255,255,255,0.15);
+    margin-top:30px;padding-top:18px;
+    font-size:0.8rem;color:#8FBAB7;
+  }
+
+  /* ---------- Cart drawer ---------- */
+  .overlay{
+    position:fixed;inset:0;background:rgba(11,54,56,0.45);
+    opacity:0;pointer-events:none;transition:opacity .2s ease;
+    z-index:50;
+  }
+  .overlay.open{opacity:1;pointer-events:auto;}
+  .drawer{
+    position:fixed;top:0;right:0;bottom:0;
+    width:100%;max-width:400px;
+    background:#fff;
+    box-shadow:-10px 0 30px rgba(0,0,0,0.15);
+    transform:translateX(100%);
+    transition:transform .25s ease;
+    z-index:51;
+    display:flex;flex-direction:column;
+  }
+  .drawer.open{transform:translateX(0);}
+  .drawer-head{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 20px;border-bottom:1px solid var(--line);
+  }
+  .drawer-head h2{margin:0;font-size:1.05rem;}
+  .drawer-close{background:none;border:none;font-size:1.4rem;color:var(--ink-soft);}
+  .drawer-body{flex:1;overflow-y:auto;padding:14px 20px;}
+  .drawer-empty{color:var(--ink-soft);font-size:0.92rem;padding:30px 0;text-align:center;}
+  .line-item{
+    display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);
+  }
+  .line-item img,.line-item svg{width:56px;height:56px;border-radius:6px;background:var(--teal-100);object-fit:cover;flex-shrink:0;color:var(--teal-500);padding:8px;}
+  .line-info{flex:1;min-width:0;}
+  .line-info h4{margin:0 0 4px;font-size:0.88rem;font-weight:600;}
+  .qty-row{display:flex;align-items:center;gap:10px;}
+  .qty-btn{
+    width:24px;height:24px;border:1px solid var(--line);background:#fff;
+    border-radius:4px;font-size:0.9rem;display:flex;align-items:center;justify-content:center;
+  }
+  .qty-val{min-width:16px;text-align:center;font-size:0.88rem;}
+  .line-remove{margin-left:auto;background:none;border:none;color:#B34437;font-size:0.78rem;text-decoration:underline;}
+  .line-price{font-size:0.85rem;color:var(--teal-900);font-weight:600;margin-top:4px;}
+  .drawer-foot{
+    border-top:1px solid var(--line);padding:16px 20px 22px;
+  }
+  .total-row{
+    display:flex;justify-content:space-between;align-items:baseline;
+    margin-bottom:14px;font-size:1.02rem;
+  }
+  .total-row b{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;color:var(--teal-900);}
+  .checkout-btn{
+    width:100%;background:var(--whatsapp);color:#fff;border:none;
+    border-radius:var(--radius-sm);padding:14px;font-weight:600;font-size:0.98rem;
+    display:flex;align-items:center;justify-content:center;gap:8px;
+  }
+  .checkout-btn:hover{background:var(--whatsapp-dark);}
+  .checkout-note{font-size:0.76rem;color:var(--ink-soft);margin-top:10px;text-align:center;}
+
+  .toast{
+    position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);
+    background:var(--teal-900);color:#fff;padding:11px 18px;border-radius:999px;
+    font-size:0.85rem;opacity:0;transition:all .25s ease;z-index:60;pointer-events:none;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  /* ---------- Responsive ---------- */
+  @media (min-width:600px){
+    .products{grid-template-columns:repeat(3,1fr);}
+    .steps{grid-template-columns:repeat(3,1fr);}
+  }
+  @media (min-width:760px){
+    .hero .wrap{grid-template-columns:1.1fr 0.9fr;}
+    .hero-visual{order:2;max-width:320px;}
+  }
+  @media (min-width:900px){
+    .products{grid-template-columns:repeat(4,1fr);}
+    footer .wrap{grid-template-columns:1.4fr 1fr 1fr;}
+  }
+  @media (min-width:1100px){
+    .products{grid-template-columns:repeat(5,1fr);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
 </head>
 <body>
-  
-    
-<DIV class="top">
-    <H1 class="h1">ELIZABETH BIASHARA</H1>
-    </DIV>
-<br>
-<br>
-<br>
-<br>
-    <H2>WAUZAJI WA ELECTRIC HEATER JUGS</H2>
-    <P>JIPATIE HEATER YA NDOTO YAKO</P>
-    <img src="products\1.webp" alt="">
-        <img src="products\2.jpg" alt="">
-    <img src="products\3.jpg" alt="">
-        <img src="products4.jpg" alt="">
-    <img src="products\5.jpg" alt="">
-    <img src="products\6.jpg" alt="">
-    <img src="products\7.jpg" alt="">
-    <img src="products\8.jpg" alt="">
-    <img src="products\9.jpg" alt="">
-    <img src="products\10.jpg" alt="">
-<div class="p1">20000</div>
-<div class="p2">30000</div>
-<div class="p3">35000</div>
-<div class="p4">25000</div>
-<div class="p5">35000</div>
-<div class="p6">40000</div>
-<div class="p7">35000</div>
-<div class="p8">40000</div>
-<div class="p9">43000</div>
-    <div class="p10">45000</div>
 
-    <style>
-        .top{
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top">ELIZABETH BIASHARA<small>Heater Jugs — Mwanza</small></a>
+    <button class="cart-btn" id="openCart" aria-haspopup="dialog" aria-controls="cartDrawer">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.4a2 2 0 0 0 2-1.6L22 8H6"/><circle cx="10" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg>
+      <span>Cart</span>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
 
-            background-color: rgb(19, 82, 84);
-            padding:10px ;
-            height: 2cm;
-            top: 0;
-            position: absolute;
-            width: 100%;
-            left: 0;
-        }
-        img{
-            height: 6cm;
-            border: 2px solid rgb(28, 69, 76);
-            
-        }
-        .p1{
-            background-color: red;
-            height: 0.5cm;
-            width: 1.2cm;
-            padding: 2px;
-            border-radius: 3px 3px 3px 3px;
-            top: 200px;
-            position: absolute;
-        }
-        .p2{
-            background-color: red;
-            height: 0.5cm;
-            width: 1.2cm;
-            padding: 2px;
-            border-radius: 3px 3px 3px 3px;
-            top: 200px;
-            position: absolute;
-            left: 212px;
-        }
-        .p3{
-            background-color: red;
-            height: 0.5cm;
-            width: 1.2cm;
-            padding: 2px;
-            border-radius: 3px 3px 3px 3px;
-            top: 200px;
-            position: absolute;
-            left: 449px;
-        }
-       .p4{
-            background-color: red;
-            height: 0.5cm;
-            width: 1.2cm;
-            padding: 2px;
-            border-radius: 3px 3px 3px 3px;
-            top: 200px;
-            position: absolute;
-            left: 683px;
-        } 
-         .p5{
-            background-color: red;
-            height: 0.5cm;
-            width: 1.2cm;
-            padding: 2px;
-            border-radius: 3px 3px 3px 3px;
-            top: 200px;
-            position: absolute;
-                left: 918px;
-            }
-            .p6{
-            background-color: red;
-            height: 0.5cm;
-            width: 1.2cm;
-            padding: 2px;
-            border-radius: 3px 3px 3px 3px;
-            top: 430px;
-            position: absolute;
-        }
-        .p7{
-            background-color: red;
-            height: 0.5cm;
-            width: 1.2cm;
-            padding: 2px;
-            border-radius: 3px 3px 3px 3px;
-            top: 430px;
-            position: absolute;
-            left: 169px;
-        } .p8{
-            background-color: red;
-            height: 0.5cm;
-            width: 1.2cm;
-            padding: 2px;
-            border-radius: 3px 3px 3px 3px;
-            top: 429px;
-            position: absolute;
-            left: 328px;
-        }.p9{
-            background-color: red;
-            height: 0.5cm;
-            width: 1.2cm;
-            padding: 2px;
-            border-radius: 3px 3px 3px 3px;
-            top: 430px;
-            position: absolute;
-            left: 635px;
-        }.p10{
-            background-color: red;
-            height: 0.5cm;
-            width: 1.2cm;
-            padding: 2px;
-            border-radius: 3px 3px 3px 3px;
-            top: 430px;
-            position: absolute;
-                left: 872px;
-            } 
-    </style>
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Maji ya moto tayari, ndani ya dakika chache</h1>
+        <p>Heater jugs za kudumu kwa nyumba na ofisi — kutoka lita 1.0 hadi 2.2. Chagua saizi inayokufaa, agiza kwa kubofya, tunaleta mlangoni.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#products">Angalia Bidhaa</a>
+          <a class="btn btn-outline" href="#jinsi-ya-order">Jinsi ya Ku-order</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><b>10+</b><span>Aina za Heater Jug</span></div>
+          <div class="hero-stat"><b>24hr</b><span>Uwasilishaji Mwanza</span></div>
+          <div class="hero-stat"><b>1yr</b><span>Dhamana ya Bidhaa</span></div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <svg viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="100" cy="220" rx="70" ry="8" fill="#0B3638" opacity="0.25"/>
+          <path d="M55 90 L60 200 a40 20 0 0 0 80 0 L145 90 Z" fill="#1C7274" stroke="#EFF5F4" stroke-width="3"/>
+          <rect x="48" y="72" width="104" height="22" rx="8" fill="#0B3638"/>
+          <rect x="90" y="55" width="20" height="20" rx="4" fill="#E8873A"/>
+          <path d="M145 110 q30 10 30 45 q0 30 -25 40" stroke="#E8873A" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <circle cx="100" cy="140" r="3" fill="#EFF5F4"/>
+          <path d="M75 40 q5 -14 0 -22 M100 34 q5 -14 0 -22 M125 40 q5 -14 0 -22" stroke="#EFF5F4" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="products">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Bidhaa Zetu</h2>
+        <p>Bei zote ni kwa mtandaoni. Bofya alama ya kuongeza kwenye cart, kisha maliza order kupitia WhatsApp.</p>
+      </div>
+      <div class="products" id="productGrid"></div>
+    </div>
+  </section>
+
+  <section class="section" id="jinsi-ya-order" style="background:var(--teal-100);">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Jinsi ya Ku-order</h2>
+        <p>Hatua tatu tu, hakuna usajili unaohitajika.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Chagua bidhaa</h3>
+          <p>Ongeza heater jug unayotaka kwenye cart. Unaweza kuchagua zaidi ya moja na kubadilisha idadi.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Thibitisha order</h3>
+          <p>Fungua cart, kagua bei ya jumla, kisha bofya "Agiza kupitia WhatsApp" — ujumbe utajazwa wenyewe.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Lipa ukipokea</h3>
+          <p>Tunathibitisha order na eneo lako kwa WhatsApp, kisha tunaleta bidhaa — unalipa unapopokea.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h4>Elizabeth Biashara</h4>
+      <p>Wauzaji wa heater jugs bora, Mwanza. Ubora wa kudumu, bei ya kirafiki, huduma ya moja kwa moja kwa mteja.</p>
+    </div>
+    <div>
+      <h4>Wasiliana</h4>
+      <p><a href="tel:+255000000000">+255 000 000 000</a></p>
+      <p><a href="https://wa.me/255000000000" target="_blank" rel="noopener">WhatsApp Order</a></p>
+      <p>Mwanza, Tanzania</p>
+    </div>
+    <div>
+      <h4>Masaa ya Kazi</h4>
+      <p>Jumatatu – Jumamosi: 8:00 – 19:00</p>
+      <p>Jumapili: 10:00 – 16:00</p>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">© <span id="year"></span> Elizabeth Biashara. Haki zote zimehifadhiwa.</div>
+</footer>
+
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="cartDrawer" role="dialog" aria-label="Cart yako" aria-hidden="true">
+  <div class="drawer-head">
+    <h2>Cart Yako</h2>
+    <button class="drawer-close" id="closeCart" aria-label="Funga cart">&times;</button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+  <div class="drawer-foot" id="drawerFoot" style="display:none;">
+    <div class="total-row"><span>Jumla</span><b id="cartTotal">TSh 0</b></div>
+    <button class="checkout-btn" id="checkoutBtn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 0 5.4 0 12c0 2.1.6 4.1 1.6 5.9L0 24l6.3-1.6A12 12 0 0 0 12 24c6.6 0 12-5.4 12-12 0-3.2-1.2-6.2-3.5-8.5zM12 22a10 10 0 0 1-5.1-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A10 10 0 1 1 22 12a10 10 0 0 1-10 10z"/></svg>
+      Agiza kupitia WhatsApp
+    </button>
+    <p class="checkout-note">Utaelekezwa WhatsApp na ujumbe wa order tayari umeandikwa.</p>
+  </div>
+</aside>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* =====================================================================
+   EDIT HERE — maelezo ya duka
+   ===================================================================== */
+const WHATSAPP_NUMBER = "255000000000"; // BADILISHA: namba yako ya WhatsApp, mfumo 255XXXXXXXXX bila +
+const CURRENCY_PREFIX = "TSh";
+
+/* Bidhaa: badilisha jina, bei, na "image" (jina la faili ndani ya folder /images/)
+   Kama faili la picha halipo, icon ya kawaida itaonekana badala yake — si tatizo,
+   ongeza tu picha halisi kwenye folder ya "images" yenye jina linalofanana. */
+const PRODUCTS = [
+  { id: 1,  name: "Heater Jug Mini 1.0L",        meta: "Plastiki, single-wall",     price: 20000, image: "products/1.webp" },
+  { id: 2,  name: "Heater Jug Rahisi 1.2L",       meta: "Plastiki, matumizi ya kila siku", price: 30000, image: "products/2.jpg" },
+  { id: 3,  name: "Heater Jug Steel 1.5L",        meta: "Stainless steel",           price: 35000, image: "products/3.jpg" },
+  { id: 4,  name: "Heater Jug Ofisi 1.2L",        meta: "Nyepesi, rahisi kubeba",     price: 25000, image: "products/4.jpg" },
+  { id: 5,  name: "Heater Jug Double Wall 1.5L",  meta: "Hushika joto muda mrefu",    price: 35000, image: "products/5.jpg" },
+  { id: 6,  name: "Heater Jug Familia 1.8L",      meta: "Kwa familia kubwa",          price: 40000, image: "products/6.jpg" },
+  { id: 7,  name: "Heater Jug Auto-Cut 1.5L",     meta: "Inazima yenyewe ikichemka",  price: 35000, image: "products/7.jpg" },
+  { id: 8,  name: "Heater Jug Steel Pro 1.8L",    meta: "Stainless steel, imara",     price: 40000, image: "products/8.jpg" },
+  { id: 9,  name: "Heater Jug Kubwa 2.0L",        meta: "Kwa matumizi mengi",         price: 43000, image: "products/9.jpg" },
+  { id: 10, name: "Heater Jug XL 2.2L",           meta: "Saizi kubwa zaidi",          price: 45000, image: "products/10.jpg" },
+];
+/* ===================================================================== */
+
+const fmt = n => `${CURRENCY_PREFIX} ${n.toLocaleString("en-US")}`;
+const placeholderIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" xmlns="http://www.w3.org/2000/svg"><path d="M6 8h9a3 3 0 0 1 0 6h-1"/><path d="M6 8v9a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-3"/><path d="M9 4v2M12 4v2M15 4v2"/></svg>`;
+
+let cart = JSON.parse(localStorage.getItem("eb_cart") || "{}");
+
+function saveCart(){
+  localStorage.setItem("eb_cart", JSON.stringify(cart));
+  renderCartCount();
+  renderDrawer();
+}
+
+function renderProducts(){
+  const grid = document.getElementById("productGrid");
+  grid.innerHTML = PRODUCTS.map(p => `
+    <div class="card">
+      <div class="card-media">
+        <img src="${p.image}" alt="${p.name}" loading="lazy"
+             onerror="this.classList.add('is-hidden')">
+        ${placeholderIcon}
+      </div>
+      <div class="card-body">
+        <h3>${p.name}</h3>
+        <div class="card-meta">${p.meta}</div>
+        <div class="card-foot">
+          <span class="price">${fmt(p.price)}</span>
+          <button class="add-btn" aria-label="Ongeza ${p.name} kwenye cart" onclick="addToCart(${p.id}, this)">+</button>
+        </div>
+      </div>
+    </div>
+  `).join("");
+}
+
+function addToCart(id, btn){
+  cart[id] = (cart[id] || 0) + 1;
+  saveCart();
+  if (btn){
+    btn.setAttribute("data-added","true");
+    btn.textContent = "✓";
+    setTimeout(() => { btn.removeAttribute("data-added"); btn.textContent = "+"; }, 700);
+  }
+  showToast("Imeongezwa kwenye cart");
+}
+
+function changeQty(id, delta){
+  cart[id] = (cart[id] || 0) + delta;
+  if (cart[id] <= 0) delete cart[id];
+  saveCart();
+}
+
+function removeLine(id){
+  delete cart[id];
+  saveCart();
+}
+
+function cartEntries(){
+  return Object.entries(cart)
+    .map(([id, qty]) => ({ product: PRODUCTS.find(p => p.id === Number(id)), qty }))
+    .filter(e => e.product);
+}
+
+function renderCartCount(){
+  const count = Object.values(cart).reduce((a,b) => a+b, 0);
+  document.getElementById("cartCount").textContent = count;
+}
+
+function renderDrawer(){
+  const entries = cartEntries();
+  const body = document.getElementById("drawerBody");
+  const foot = document.getElementById("drawerFoot");
+
+  if (entries.length === 0){
+    body.innerHTML = `<div class="drawer-empty">Cart yako iko wazi.<br>Ongeza heater jug ili kuanza order.</div>`;
+    foot.style.display = "none";
+    return;
+  }
+
+  foot.style.display = "block";
+  let total = 0;
+  body.innerHTML = entries.map(({product, qty}) => {
+    const lineTotal = product.price * qty;
+    total += lineTotal;
+    return `
+      <div class="line-item">
+        <img src="${product.image}" alt="" onerror="this.outerHTML='${placeholderIcon.replace(/'/g,"\\'")}'">
+        <div class="line-info">
+          <h4>${product.name}</h4>
+          <div class="qty-row">
+            <button class="qty-btn" aria-label="Punguza idadi" onclick="changeQty(${product.id}, -1)">−</button>
+            <span class="qty-val">${qty}</span>
+            <button class="qty-btn" aria-label="Ongeza idadi" onclick="changeQty(${product.id}, 1)">+</button>
+            <button class="line-remove" onclick="removeLine(${product.id})">Ondoa</button>
+          </div>
+          <div class="line-price">${fmt(lineTotal)}</div>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  document.getElementById("cartTotal").textContent = fmt(total);
+}
+
+function buildWhatsAppMessage(){
+  const entries = cartEntries();
+  let total = 0;
+  const lines = entries.map(({product, qty}) => {
+    const lineTotal = product.price * qty;
+    total += lineTotal;
+    return `• ${product.name} x${qty} — ${fmt(lineTotal)}`;
+  });
+  const msg = [
+    "Habari, ningependa ku-order:",
+    "",
+    ...lines,
+    "",
+    `Jumla: ${fmt(total)}`,
+    "",
+    "Jina langu: ",
+    "Eneo la kuletewa: "
+  ].join("\n");
+  return encodeURIComponent(msg);
+}
+
+function checkout(){
+  if (cartEntries().length === 0) return;
+  const text = buildWhatsAppMessage();
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank");
+}
+
+let toastTimer;
+function showToast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove("show"), 1800);
+}
+
+function openDrawer(){
+  document.getElementById("cartDrawer").classList.add("open");
+  document.getElementById("overlay").classList.add("open");
+  document.getElementById("cartDrawer").setAttribute("aria-hidden","false");
+}
+function closeDrawer(){
+  document.getElementById("cartDrawer").classList.remove("open");
+  document.getElementById("overlay").classList.remove("open");
+  document.getElementById("cartDrawer").setAttribute("aria-hidden","true");
+}
+
+document.getElementById("openCart").addEventListener("click", openDrawer);
+document.getElementById("closeCart").addEventListener("click", closeDrawer);
+document.getElementById("overlay").addEventListener("click", closeDrawer);
+document.getElementById("checkoutBtn").addEventListener("click", checkout);
+document.getElementById("year").textContent = new Date().getFullYear();
+
+renderProducts();
+renderCartCount();
+renderDrawer();
+</script>
+
 </body>
 </html>
